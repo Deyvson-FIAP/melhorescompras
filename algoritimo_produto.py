@@ -1,37 +1,47 @@
-# deseja cadastrar outro produto?
+# Inicializando a lista de produtos
+produtos = []
 
+# Pergunta inicial para o usuário
 resposta = 'sim'
+
+# Loop para cadastro de múltiplos produtos
 while resposta == 'sim':
+    # Cadastro de um produto
 
-    # 1 peça ao usuário as seguintes informações de produtos: descrição do produto, valor do produto, tipo de embalagem.
+    # Solicitando informações do produto
+    descricao_prod = input('Digite a descrição do produto: ')
+    tipo_embalagem = input('Qual o tipo de embalagem deste produto: ')
 
-    descrição_prod = str(input('digite a descrição do produto aqui: '))
+    # Solicitando o valor do produto
     while True:
         try:
-            valor_prod = float(input('insira o valor do produto: '))
+            valor_prod = float(input('Insira o valor do produto: '))
+
+            # Calculando o valor com ICMS
+            icms_rate = 0.18
+            valor_com_icms = valor_prod + (valor_prod * icms_rate)
+
+            # Criando o dicionário do produto
+            produto = {
+                'descricao': descricao_prod,
+                'embalagem': tipo_embalagem,
+                'valor_total': valor_com_icms
+            }
+
+            # Adicionando o produto à lista
+            produtos.append(produto)
+
+            break  # Saindo do loop interno após o cadastro bem-sucedido
         except ValueError:
-            print('Esta informação não é valida, por favor insira um numero real')
-        else:
-            break
+            print(
+                'Valor inválido! Por favor, insira um número válido para o valor do produto.')
 
-    tipo_embalagem = str(input('Qual o tipo de embalagem deste produto: '))
+    # Pergunta ao usuário se deseja cadastrar outro produto
+    resposta = input(
+        'Deseja cadastrar mais algum produto? (sim ou não): ').strip().lower()
 
-# 2 Crie uma função Lambda que, a partir do valor do produto, retorne o valor do ICMS (considere aplicar 18% sobre o valor do produto).
-
-    valor = valor_prod
-    icms = valor_prod*0.18
-    def soma(valor, icms): return valor + icms
-    print(soma(valor, icms))
-
-# 3 deseja cadastrar um novo produto?
-    resposta = input('Deseja cadastrar mais algum produto?')
-
-# 4 adicionar a coleção:
-
-armazenamento_info = {'tony stark': [
-    'genio', 'bilionário', 'playboy', 'filantropo']}
-
-print(armazenamento_info['tony stark'])
-
-
-# 4 finalizar cadastro do produto
+# Exibindo os produtos cadastrados
+print("\nProdutos cadastrados:")
+for p in produtos:
+    print(f"Descrição: {p['descricao']}, Embalagem: {
+          p['embalagem']}, Valor Total (com ICMS): R$ {p['valor_total']:.2f}")
