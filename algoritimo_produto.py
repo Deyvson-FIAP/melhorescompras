@@ -1,5 +1,7 @@
-# Inicializando a lista de produtos
-produtos = []
+import json
+
+# Inicializando o dicionário de produtos
+produtos = {}
 
 # Pergunta inicial para o usuário
 resposta = 'sim'
@@ -18,30 +20,32 @@ while resposta == 'sim':
             valor_prod = float(input('Insira o valor do produto: '))
 
             # Calculando o valor com ICMS
-            icms_rate = 0.18
-            valor_com_icms = valor_prod + (valor_prod * icms_rate)
+            icms = 0.18
+            valor_com_icms = valor_prod + (valor_prod * icms)
 
-            # Criando o dicionário do produto
-            produto = {
-                'descricao': descricao_prod,
+            # Criando a estrutura do produto com subtópicos
+            produtos[descricao_prod] = {
                 'embalagem': tipo_embalagem,
                 'valor_total': valor_com_icms
             }
 
-            # Adicionando o produto à lista
-            produtos.append(produto)
-
             break  # Saindo do loop interno após o cadastro bem-sucedido
         except ValueError:
-            print(
-                'Valor inválido! Por favor, insira um número válido para o valor do produto.')
+            print('Valor inválido! Por favor, insira um número válido para o valor do produto.')
 
     # Pergunta ao usuário se deseja cadastrar outro produto
-    resposta = input(
-        'Deseja cadastrar mais algum produto? (sim ou não): ').strip().lower()
+    resposta = input('Deseja cadastrar mais algum produto? (sim ou não): ').strip().lower()
 
 # Exibindo os produtos cadastrados
 print("\nProdutos cadastrados:")
-for p in produtos:
-    print(f"Descrição: {p['descricao']}, Embalagem: {
-          p['embalagem']}, Valor Total (com ICMS): R$ {p['valor_total']:.2f}")
+for descricao, info in produtos.items():
+    print(f"Descrição: {descricao}, Embalagem: {info['embalagem']}, Valor Total (com ICMS): R$ {info['valor_total']:.2f}")
+
+# Convertendo o dicionário de produtos para JSON e salvando em um arquivo
+final = json.dumps(produtos, indent=4)
+
+# Escrevendo o JSON em um arquivo
+with open('C:\\projeto 1\\info_produtos', 'w') as info_prod:
+    info_prod.write(final)
+
+print("\nDados dos produtos salvos em 'C:\\projeto 1\\info_produtos'.")
