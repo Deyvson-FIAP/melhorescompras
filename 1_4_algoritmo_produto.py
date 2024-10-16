@@ -29,8 +29,6 @@ while resposta == 'sim':
 
             # Criando a estrutura do produto com subtópicos
             produtos[descricao_prod] = {
-            # Criando a estrutura do produto com subtópicos
-            produtos[descricao_prod] = {
                 'embalagem': tipo_embalagem,
                 'valor_total': valor_com_icms
             }
