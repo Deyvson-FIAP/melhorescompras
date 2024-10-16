@@ -1,0 +1,22 @@
+{
+    "macbook pro ": {
+        "embalagem": "caixa",
+        "valor_total": 16625.02
+    },
+    "iphone 15 pro max": {
+        "embalagem": "caixa",
+        "valor_total": 9663.138
+    },
+    "ipad air 5 gen": {
+        "embalagem": "caixa",
+        "valor_total": 4602.0
+    },
+    "apple watch series 9 ": {
+        "embalagem": "caixa",
+        "valor_total": 2783.62
+    },
+    "air pods pro": {
+        "embalagem": "caixa",
+        "valor_total": 2311.856
+    }
+}
